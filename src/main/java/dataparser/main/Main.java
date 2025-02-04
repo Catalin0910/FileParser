@@ -7,13 +7,12 @@ import dataparser.analytics.WordCountModule;
 import dataparser.core.DataProcessor;
 import dataparser.core.FileWatcher;
 
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String directoryPath = "C:/FileParser/src/main/resources/input";
+        String directoryPath = "C:/FileParser/src/test/resources/input";
 
 
         List<AnalyticsModule> analyticsModules = Arrays.asList(

@@ -23,4 +23,8 @@ public class MostUsedWordModule implements AnalyticsModule {
     public void displayResult() {
         System.out.println("Most used word: " + mostUsedWord + "\n");
     }
+
+    public String getMostUsedWord() {
+        return mostUsedWord;
+    }
 }

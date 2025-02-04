@@ -12,4 +12,8 @@ public class WordCountModule implements AnalyticsModule {
     public void displayResult() {
         System.out.println("Number of words: " + wordCount);
     }
+
+    public int getWordCount() {
+        return wordCount;
+    }
 }

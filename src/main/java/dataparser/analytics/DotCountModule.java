@@ -12,4 +12,8 @@ public class DotCountModule implements AnalyticsModule {
     public void displayResult() {
         System.out.println("Number of dots: " + dotCount);
     }
+
+    public int getDotCount() {
+        return dotCount;
+    }
 }

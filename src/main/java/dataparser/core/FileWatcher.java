@@ -8,29 +8,35 @@ public class FileWatcher {
     private final DataProcessor dataProcessor;
 
     public FileWatcher(String directoryPath, DataProcessor dataProcessor) {
+        if (directoryPath == null || directoryPath.isEmpty()) {
+            throw new IllegalArgumentException("Directory path cannot be null or empty.");
+        }
         this.directoryPath = directoryPath;
         this.dataProcessor = dataProcessor;
     }
 
     public void watch() throws Exception {
         Path path = Paths.get(directoryPath);
-        if (!Files.isDirectory(path)) {
+
+        if (!Files.exists(path) || !Files.isDirectory(path)) {
             throw new IllegalArgumentException("Specified path is not a valid directory: " + directoryPath);
         }
 
         Path processedDir = Paths.get(directoryPath, "processed");
         if (!Files.exists(processedDir)) {
             Files.createDirectories(processedDir);
-            System.out.println("processed directory already exist");
+            System.out.println("Processed directory created.");
         }
 
-        // txt processing
         File directory = new File(directoryPath);
-        for (File file : directory.listFiles()) {
-            if (file.isFile() && file.getName().endsWith(".txt")) {
-                System.out.println("Wait for file " + file.getName() + " to be processed");
-                dataProcessor.processFile(file);
-                FileMover.moveFile(file, directoryPath + "/processed");
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile() && file.getName().endsWith(".txt")) {
+                    System.out.println("Processing file " + file.getName());
+                    dataProcessor.processFile(file);
+                    FileMover.moveFile(file, directoryPath + "/processed");
+                }
             }
         }
 

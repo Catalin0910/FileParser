@@ -1,6 +1,5 @@
 package dataparser.factory;
 
-
 import dataparser.parser.FileParser;
 import dataparser.parser.TxtFileParser;
 

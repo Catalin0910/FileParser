@@ -27,7 +27,7 @@ git clone https://github.com/Catalin0910/FileParser.git
 
 You can build it manually using your preferred IDE (e.g., IntelliJ IDEA).
 
-##Directory Structure
+**Directory Structure**
 
 The project consists of the following modules:
 
@@ -46,7 +46,7 @@ Before running the application, set the directory path to monitor in the Main.ja
 
 String directoryPath = "C:/FileParser/src/main/resources/input", replace this path with the directory you wish to monitor for new .txt files.
 
-##Processing
+**Processing**
 
 The application will automatically process each new file as it appears in the directory. It will analyze the file for word count, dot count, and most used word, then print the results to the console.
 

@@ -1,0 +1,86 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.10">
+  <diagram name="Pagină-1" id="Id-U5bHaxcVy48LAB3d7">
+    <mxGraphModel dx="2261" dy="784" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-1" value="&#xa;&#xa;&#xa;DataProcessor&#xa;&#xa;&#xa;- processFile(filePath: String): void" style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="20" y="100" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-2" value="&#xa;&#xa;FileParser&#xa;&#xa;- parse(filePath: String): String" style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="320" y="100" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-3" value="&#xa;&#xa;TxtFileParser&#xa;&#xa;&#xa;Extracts text data from TXT files." style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="720" y="200" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-4" value="&#xa;&#xa;&#xa;PdfFileParser&#xa;&#xa;&#xa;Extracts text from PDFs." style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="720" y="40" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-5" value="&#xa;&#xa;FileParserFactory&#xa;&#xa;- createParser(fileType: String): FileParser" style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="310" y="310" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-6" value="&#xa;&#xa;&#xa;&#xa;&#xa;AnalyticsEngine&#xa;&#xa;&#xa;&#xa;&#xa;- runAnalytics(data: String): void" style="swimlane" vertex="1" parent="1">
+          <mxGeometry y="500" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-7" value="&#xa;&#xa;&#xa;&#xa;&#xa;AnalyticsModule&#xa;&#xa;&#xa;&#xa;&#xa;- analyze(data: String): Map&lt;String, Integer&gt;" style="swimlane;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="320" y="500" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-8" value="&#xa;&#xa;&#xa;WordCountModule&#xa;&#xa;&#xa;&#xa;Counts words in text data." style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="650" y="600" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-9" value="&#xa;&#xa;&#xa;WhitespaceCountModule&#xa;&#xa;&#xa;&#xa;Counts spaces and new lines." style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="650" y="440" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-10" edge="1" parent="1" source="EnHfTnYO6GmeN_XIfvb6-1" target="EnHfTnYO6GmeN_XIfvb6-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-11" edge="1" parent="1" source="EnHfTnYO6GmeN_XIfvb6-2" target="EnHfTnYO6GmeN_XIfvb6-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-12" edge="1" parent="1" source="EnHfTnYO6GmeN_XIfvb6-2" target="EnHfTnYO6GmeN_XIfvb6-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-13" edge="1" parent="1" source="EnHfTnYO6GmeN_XIfvb6-5" target="EnHfTnYO6GmeN_XIfvb6-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-14" edge="1" parent="1" source="EnHfTnYO6GmeN_XIfvb6-6" target="EnHfTnYO6GmeN_XIfvb6-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-15" edge="1" parent="1" source="EnHfTnYO6GmeN_XIfvb6-7" target="EnHfTnYO6GmeN_XIfvb6-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-16" edge="1" parent="1" source="EnHfTnYO6GmeN_XIfvb6-7" target="EnHfTnYO6GmeN_XIfvb6-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-17" value="DataProcessor - is the Main class *&lt;span style=&quot;font-weight: 700; text-wrap-mode: nowrap;&quot;&gt;Coordinates file reading and analytics execution.*&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelPosition=center;verticalLabelPosition=middle;" vertex="1" parent="1">
+          <mxGeometry x="-80" y="760" width="440" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-18" value="File parser - abstract class:&amp;nbsp;&lt;span style=&quot;font-weight: 700; text-wrap-mode: nowrap;&quot;&gt;Defines structure for file parsers.&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-5" y="810" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-19" value="File Parser Factory (use factory pattern)-&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-weight: 700; text-wrap-mode: nowrap;&quot;&gt;Creates appropriate file parser instance.&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="860" width="520" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-20" value="AnalyticsEngine - class -&amp;nbsp; gets the text and run the analisys" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="900" width="440" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-21" value="Analystic Module (Interface) -&amp;nbsp; define standards for analizez model" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry y="950" width="330" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="EnHfTnYO6GmeN_XIfvb6-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="EnHfTnYO6GmeN_XIfvb6-23" target="EnHfTnYO6GmeN_XIfvb6-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="775" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EnHfTnYO6GmeN_XIfvb6-23" value="variables:&lt;br&gt;parserFactory: FileParserFActory&lt;div&gt;analiytics: AnaliticsEngine&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="560" y="730" width="200" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

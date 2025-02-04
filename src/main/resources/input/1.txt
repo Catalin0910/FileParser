@@ -1,0 +1,13 @@
+Hello world. This is a test file.
+This test file contains some words. Some words appear more than once.
+Test, test, and more test. What is the most used word?
+Test, test, and more test. What is the most used word?
+Test, test, and more test. What is the most used word?
+Test, test, and more test. What is the most used word?
+Test, test, and more test. What is the most used word?
+Test, test, and more test. What is the most used word?
+Test, test, and more test. What is the most used word?Test, test, and more test. What is the most used word?
+Test, test, and more test. What is the most used word?
+Test, test, and more test. What is the most used word?
+Test, test, and more test. What is the most used word?
+Dots... are also included in this test file.

@@ -1,5 +1,4 @@
 # FileParser
-# FileParser
 
 **FileParser** is a Java application designed to monitor a directory for `.txt` files. It processes each file, analyzes its content for specific statistics (word count, dot count, most used word), and moves the file to a `processed` sub-folder after completion. The project is structured using multiple modules, each responsible for analyzing a particular type of data in the text files.
 

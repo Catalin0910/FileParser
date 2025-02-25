@@ -4,13 +4,13 @@ import dataparser.analytics.*;
 import dataparser.core.DataProcessor;
 import dataparser.core.FileWatcher;
 
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String directoryPath = "C:/FileParser/src/test/resources/input";
-
+        String directoryPath = Paths.get("src", "test", "resources", "input").toAbsolutePath().toString();
 
         List<AnalyticsModule> analyticsModules = Arrays.asList(
                 new WordCountModule(),

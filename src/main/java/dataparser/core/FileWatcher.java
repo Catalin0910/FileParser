@@ -28,19 +28,28 @@ public class FileWatcher {
             System.out.println("Processed directory created.");
         }
 
-        File directory = new File(directoryPath);
-        File[] files = directory.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                if (file.isFile() && (file.getName().endsWith(".txt") || file.getName().endsWith(".csv") || file.getName().endsWith(".pdf"))) {
-                    System.out.println("Processing file " + file.getName());
-                    dataProcessor.processFile(file);
-                    FileMover.moveFile(file, directoryPath + "/processed");
-                }
-            }
-        }
-
         WatchService watchService = FileSystems.getDefault().newWatchService();
         path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
+
+        System.out.println("Watching directory: " + directoryPath);
+
+        while (true) {
+            WatchKey key = watchService.take();
+            for (WatchEvent<?> event : key.pollEvents()) {
+                WatchEvent.Kind<?> kind = event.kind();
+
+                if (kind == StandardWatchEventKinds.ENTRY_CREATE) {
+                    File newFile = new File(directoryPath, event.context().toString());
+                    if (newFile.isFile() && (newFile.getName().endsWith(".txt") ||
+                            newFile.getName().endsWith(".csv") ||
+                            newFile.getName().endsWith(".pdf"))) {
+                        System.out.println("Processing new file: " + newFile.getName());
+                        dataProcessor.processFile(newFile);
+                        FileMover.moveFile(newFile, processedDir.toString());
+                    }
+                }
+            }
+            key.reset();
+        }
     }
 }

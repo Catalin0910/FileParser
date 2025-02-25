@@ -7,7 +7,7 @@ public class DotCountModuleTest {
 
     @Test
     public void testDotCount() {
-        String content = "This is a test... with some dots... and more.";
+        String content = "This is a test... with some dots.... and more.";
         DotCountModule dotCountModule = new DotCountModule();
         dotCountModule.analyze(content);
 

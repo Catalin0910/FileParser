@@ -1,9 +1,6 @@
 package dataparser.main;
 
-import dataparser.analytics.AnalyticsModule;
-import dataparser.analytics.DotCountModule;
-import dataparser.analytics.MostUsedWordModule;
-import dataparser.analytics.WordCountModule;
+import dataparser.analytics.*;
 import dataparser.core.DataProcessor;
 import dataparser.core.FileWatcher;
 

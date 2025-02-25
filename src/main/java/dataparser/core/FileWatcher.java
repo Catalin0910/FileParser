@@ -32,7 +32,7 @@ public class FileWatcher {
         File[] files = directory.listFiles();
         if (files != null) {
             for (File file : files) {
-                if (file.isFile() && file.getName().endsWith(".txt")) {
+                if (file.isFile() && (file.getName().endsWith(".txt") || file.getName().endsWith(".csv") || file.getName().endsWith(".pdf"))) {
                     System.out.println("Processing file " + file.getName());
                     dataProcessor.processFile(file);
                     FileMover.moveFile(file, directoryPath + "/processed");

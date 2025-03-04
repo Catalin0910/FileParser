@@ -1,6 +1,7 @@
 package dataparser.core;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.*;
 
 public class FileWatcher {
@@ -15,41 +16,36 @@ public class FileWatcher {
         this.dataProcessor = dataProcessor;
     }
 
-    public void watch() throws Exception {
+    public void watch() throws IOException, InterruptedException {
         Path path = Paths.get(directoryPath);
-
-        if (!Files.exists(path) || !Files.isDirectory(path)) {
-            throw new IllegalArgumentException("Specified path is not a valid directory: " + directoryPath);
+        if (!Files.isDirectory(path)) {
+            throw new IllegalArgumentException("Invalid directory: " + directoryPath);
         }
 
-        Path processedDir = Paths.get(directoryPath, "processed");
-        if (!Files.exists(processedDir)) {
-            Files.createDirectories(processedDir);
-            System.out.println("Processed directory created.");
-        }
-
-        WatchService watchService = FileSystems.getDefault().newWatchService();
-        path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
-
+        Files.createDirectories(Paths.get(directoryPath, "processed"));
         System.out.println("Watching directory: " + directoryPath);
 
-        while (true) {
-            WatchKey key = watchService.take();
-            for (WatchEvent<?> event : key.pollEvents()) {
-                WatchEvent.Kind<?> kind = event.kind();
+        try (WatchService watchService = FileSystems.getDefault().newWatchService()) {
+            path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
 
-                if (kind == StandardWatchEventKinds.ENTRY_CREATE) {
-                    File newFile = new File(directoryPath, event.context().toString());
-                    if (newFile.isFile() && (newFile.getName().endsWith(".txt") ||
-                            newFile.getName().endsWith(".csv") ||
-                            newFile.getName().endsWith(".pdf"))) {
-                        System.out.println("Processing new file: " + newFile.getName());
-                        dataProcessor.processFile(newFile);
-                        FileMover.moveFile(newFile, processedDir.toString());
-                    }
-                }
+            while (true) {
+                WatchKey key = watchService.take();
+                key.pollEvents().stream()
+                        .map(event -> new File(directoryPath, event.context().toString()))
+                        .filter(file -> file.isFile() && (file.getName().endsWith(".txt") ||
+                                file.getName().endsWith(".csv") ||
+                                file.getName().endsWith(".pdf")))
+                        .forEach(file -> {
+                            System.out.println("Processing new file: " + file.getName());
+                            dataProcessor.processFile(file);
+                            try {
+                                FileMover.moveFile(file, directoryPath + "/processed");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                key.reset();
             }
-            key.reset();
         }
     }
 }

@@ -1,22 +1,22 @@
 package dataparser.parser;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class TxtFileParser implements FileParser {
+    private static final int BUFFER_SIZE = 8192; // 8KB buffer per read
+
     @Override
     public String parse(File file) {
-        StringBuilder content = new StringBuilder();
+        StringWriter writer = new StringWriter();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                content.append(line).append("\n");
+            char[] buffer = new char[BUFFER_SIZE];
+            int bytesRead;
+            while ((bytesRead = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, bytesRead);
             }
         } catch (IOException e) {
             throw new RuntimeException("Error reading file: " + file.getName(), e);
         }
-        return content.toString();
+        return writer.toString();
     }
 }
